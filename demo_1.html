@@ -1,0 +1,121 @@
+<!doctype html>
+
+<!--
+  ~ jquery.mb.components
+  ~ Copyright (c) 2001-2010. Matteo Bicocchi (Pupunzi); Open lab srl, Firenze - Italy
+  ~ email: mbicocchi@open-lab.com
+  ~ site: http://pupunzi.com
+  ~
+  ~ Licences: MIT, GPL
+  ~ http://www.opensource.org/licenses/mit-license.php
+  ~ http://www.gnu.org/licenses/gpl.html
+  -->
+
+<html>
+<head>
+	<style type="text/css">
+
+		body{
+			font:14px/14px Arial, sans-serif;
+			color:gray;
+		}
+
+		.wrapper{
+			font-family:Arial, Helvetica, sans-serif;
+			padding-top:90px;
+			padding-left:50px;
+		}
+
+		.wrapper h1{
+			font-family:Arial, Helvetica, sans-serif;
+			font-size:26px;
+		}
+
+		#colorChooser, #ex1, #ex0{
+			display:inline-block;
+			background:#f3f3f3;
+			position:relative;
+			padding:10px;
+			-moz-border-radius: 4px;
+			-webkit-border-radius: 4px;
+			-moz-box-shadow:#bbb 1px 1px 2px;
+			-webkit-box-shadow:#bbb 1px 1px 2px;
+			clear:both;
+		}
+
+		#colorChange{
+			width:150px;
+			height:150px;
+			position:relative;
+			border:2px solid white;
+			display:inline-block;
+			float:left;
+			background-color:black;
+			padding:10px;
+			-moz-border-radius: 4px;
+			-webkit-border-radius: 4px;
+			-moz-box-shadow:#bbb 1px 1px 2px;
+			-webkit-box-shadow:#bbb 1px 1px 2px;
+		}
+
+		.setVal{
+			padding:5px;
+			position:relative;
+			top:-5px;
+			margin:3px;
+			width:20px;
+			color:#AAA;
+		}
+
+		.setVal span{
+			font:18px/14px Arial, sans-serif;
+			background:none;
+			padding:5px;
+			-moz-border-radius: 4px;
+			-webkit-border-radius: 4px;
+		}
+
+	</style>
+	
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<title>mb.slider</title>
+	<link href="css/mb.slider.css" media="all" rel="stylesheet" type="text/css">
+	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.js"></script>
+	<script type="text/javascript" src="inc/jquery.metadata.js"></script>
+	<script type="text/javascript" src="inc/jquery.mb.slider.js"></script>
+
+	<script type="text/javascript">
+		$(function(){
+			
+			if (self.location.href == top.location.href){
+				$("body").css({font:"normal 13px/16px 'trebuchet MS', verdana, sans-serif"});
+				var logo=$("<a href='http://pupunzi.com'><img id='logo' border='0' src='http://pupunzi.com/images/logo.png' alt='mb.ideas.repository' style='display:none;'></a>").css({position:"absolute"});
+				$("body").prepend(logo);
+				$("#logo").fadeIn();
+			}
+
+			$("#ex1 .mb_slider").mbSlider({
+				onSlide:function(o){$("#"+o.id+"_val").find(".val").html($(o).mbgetVal());},
+				onSlideLoad:function(o){
+					$("#"+o.id+"_val").find(".val").html($(o).mbgetVal());
+				}
+			});
+
+		});
+	</script>
+
+</head>
+<body>
+
+<div class="wrapper">
+	<h1>mb.slider.demo</h1>
+
+	<div id="ex1" style="">
+		you can change the value either with the slider or by changing the input value:<br><br><br>
+		<div id="sl1"  class="mb_slider {rangeColor:'orange',negativeColor:'#ffcc00', startAt:78, grid:1}" style="display:inline-block;*display:inherit;"></div>
+		<span id="sl1_val" class="setVal"><span>$</span><span class="val"></span><span>K</span></span> <!--<input class="val" value="50" style="width:100px;" onkeyup="$('#sl1').mbsetVal($(this).val());">-->
+	</div>
+</div>
+
+</body>
+</html>

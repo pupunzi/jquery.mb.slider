@@ -119,7 +119,7 @@ var a=0;
           slider.sliderRange.css({left:0,width:slider.zero});
           slider.sliderZero.css({width:startPos});
         }
-        slider.evalPosGrid= slider.sliderValueLabel.html(); ;
+        slider.evalPosGrid= slider.sliderValueLabel.html();
 
         slider.sliderBar.bind("mousedown", function(e){
 
