@@ -12,7 +12,7 @@
 /*
  * jQuery.mb.components: jquery.mb.valueSlider
  * version: 1.0
- * © 2001 - 2009 Matteo Bicocchi (pupunzi), Open Lab
+ * © 2001 - 2011 Matteo Bicocchi (pupunzi), Open Lab
  *
  */
 var a=0;
