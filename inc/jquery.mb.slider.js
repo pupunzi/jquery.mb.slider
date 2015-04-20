@@ -218,6 +218,9 @@ var a=0;
             slider.sliderValueLabel.html($(slider).mbgetVal());
             if(slider.options.onSlide) slider.options.onSlide(slider);
 
+	          e.preventDefault();
+	          e.stopPropagation();
+
           });
           $(document).bind("mouseup",function(){
             $(document).unbind("mousemove");
