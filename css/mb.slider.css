@@ -6,26 +6,25 @@
 }
 
 .mb_sliderBar{
-  padding:9px;
   background-color:#fafafa;
-
-  width:200px;
+  height: 20px;
+  width:500px;
   box-shadow: rgba(0, 0, 0, 0.1) 0 0 0 1px;
   border-radius: 4px;
-
   cursor:default;
 
 }
 
 .mb_sliderHandler{
-  padding:9px;
-  background-color:#fff;
-  position:absolute;
-  top:0;
-  left:0;
+  padding: 0 9px;
+  background-color: #fff;
+  position: absolute;
+  top: 0;
+  left: 0;
   border-radius: 4px;
   box-shadow: rgba(0, 0, 0, 0.11) 1px 1px 4px 1px;
-  cursor:default;
+  cursor: default;
+  height: 100%;
 }
 
 .mb_sliderEnd, .mb_sliderStart, .mb_sliderValue{
@@ -50,9 +49,8 @@
 
 .mb_sliderRange{
   position:absolute;
-  height:18px;
+  height:100%;
   margin:0;
-
   top:0;
   background: #ffcc00;
   border-radius: 4px 0 0 4px ;
@@ -60,34 +58,35 @@
 }
 
 .mb_sliderZero{
-  background-color: #f3f3f3;
+  background-color: #fafafa;
   position:absolute;
-  height:16px;
-  margin:1px;
+  height:100%;
+  margin:0;
   top:0;
   border-radius:4px 0 0 4px  ;
   cursor:default;
 }
 
 .mb_sliderZeroLabel{
-  font:12px/12px Arial, sans-serif;
-  color:#AAA;
-  padding: 5px 5px 2px;
-  background-color:#fff;
-  margin-left:-4px;
-  z-index:-2;
+  font: 12px/12px Arial, sans-serif;
+  color: #AAA;
+  padding: 5px;
+  background-color: #fff;
+  margin-left: -4px;
+  z-index: -2;
   border-radius: 4px;
+  margin-top: -5px;
 }
 
 .mb_sliderValueLabel{
-  font:12px/12px Arial, sans-serif;
-  padding: 5px 5px 2px;
+  font:14px/12px Arial, sans-serif;
+  padding: 5px;
   background-color: rgba(255, 255, 255, 0.5);
 
   margin-left:0;
   z-index:-1;
-  border: 1px dotted rgba(0, 0, 0, 0.4);
+  border: 1px solid rgba(0, 0, 0, 0.2);
   border-radius: 4px;
-  margin-top: -6px;
+  margin-top: -10px;
   white-space: nowrap;
 }
