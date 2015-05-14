@@ -1,27 +1,8 @@
-/*
- * ******************************************************************************
- *  jquery.mb.components
- *  file: mb.slider.css
- *
- *  Copyright (c) 2001-2014. Matteo Bicocchi (Pupunzi);
- *  Open lab srl, Firenze - Italy
- *  email: matteo@open-lab.com
- *  site: 	http://pupunzi.com
- *  blog:	http://pupunzi.open-lab.com
- * 	http://open-lab.com
- *
- *  Licences: MIT, GPL
- *  http://www.opensource.org/licenses/mit-license.php
- *  http://www.gnu.org/licenses/gpl.html
- *
- *  last modified: 07/01/14 22.50
- *  *****************************************************************************
- */
-
 .mb_slider{
   position:relative;
   padding:10px;
   z-index:0;
+  font-family:Arial, Helvetica, sans-serif;
 }
 
 .mb_sliderBar{
@@ -73,12 +54,21 @@
   text-align:right;
   top:-5px;
   margin:3px;
-  width:25px;
+ min-width: 50px;
   color:#AAA;
+  white-space: nowrap;
 
   -moz-user-select: none;
   -khtml-user-select: none;
   cursor:default;
+}
+
+.mb_sliderStart{
+  text-align: right;
+}
+
+.mb_sliderEnd{
+  text-align: left;
 }
 
 .mb_sliderRange{
@@ -115,24 +105,22 @@
 .mb_sliderZeroLabel{
   font:12px/12px Arial, sans-serif;
   color:#AAA;
-  padding:5px;
-  padding-bottom:2px;
+  padding: 5px 5px 2px;
   background-color:#fff;
   margin-left:-4px;
   z-index:-2;
-  -moz-border-radius: 4px;
-  -webkit-border-radius: 4px;
+  border-radius: 4px;
 }
+
 .mb_sliderValueLabel{
   font:12px/12px Arial, sans-serif;
-  color:#aaa;
-  padding:5px;
-  padding-bottom:2px;
-  background-color:#fff;
-  margin-left:0px;
+  padding: 5px 5px 2px;
+  background-color:#FFFFFF;
+
+  margin-left:0;
   z-index:-1;
-  -moz-border-radius: 4px;
-  -webkit-border-radius: 4px;
-  -moz-box-shadow:#bbb 1px 1px 2px;
-  -webkit-box-shadow:#bbb 1px 1px 2px;
+  border: 1px dotted rgba(0, 0, 0, 0.4);
+  border-radius: 4px;
+  margin-top: -6px;
+  white-space: nowrap;
 }
