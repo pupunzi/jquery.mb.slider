@@ -248,8 +248,8 @@ var nAgt=navigator.userAgent; if(!jQuery.browser){jQuery.browser={};jQuery.brows
 
 					});
 
-					$(document).off("mouseup.mb_slider").on("mouseup.mb_slider", function () {
-						$(document).off("mousemove.mb_slider");
+					$(document).on("mouseup.mb_slider", function () {
+						$(document).off("mousemove.mb_slider").off("mouseup.mb_slider");
 						if (slider.options.onStop)
 							slider.options.onStop(slider);
 					});
