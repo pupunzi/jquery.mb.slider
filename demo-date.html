@@ -13,6 +13,9 @@
 
 <html>
 <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>mb.slider</title>
+
     <style type="text/css">
 
         body{
@@ -48,49 +51,11 @@
         }
 
     </style>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <title>mb.slider</title>
+
     <link href="css/mb.slider.css" media="all" rel="stylesheet" type="text/css">
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.js"></script>
     <script type="text/javascript" src="inc/formatDate.js"></script>
     <script type="text/javascript" src="inc/jquery.mb.slider.js"></script>
-
-    <script type="text/javascript">
-
-        dateFormat.i18n = {
-            dayNames: [
-                "Do", "Lu", "Ma", "Me", "Gio", "ve", "Sa",
-                "Domenica", "Lunedì", "martedì", "Mercoledì", "Giovedì", "Venerdì", "Sabato"
-            ],
-            monthNames: [
-                "Gen", "Feb", "Mar", "Apr", "Mag", "Giu", "Lug", "Ago", "Set", "Ott", "Nov", "Dic",
-                "Gennaio", "Febbraio", "Marzo", "Aprile", "Maggio", "Giugno", "Luglio", "Agosto", "Settembre", "Ottobre", "Novembre", "Dicembre"
-            ]
-        };
-
-
-        $(function() {
-            $("#s0").mbSlider({
-                showVal: true,
-                formatValue: function (val) {
-                    var formatVal = new Date(val).format("dd/m/yy");
-                    return formatVal;
-                },
-                onSlideLoad: function (obj) {
-                    var val = $(obj).mbgetVal();
-                    $("#returnedValue").html( "milliseconds: " + val);
-                    $("#formattedValue").html( "date: " + new Date(val).format("dddd dd mmmm, yyyy"));
-                },
-                onStart    : function (obj) {},
-                onSlide    : function (obj) {},
-                onStop     : function (obj) {
-                    var val = $(obj).mbgetVal();
-                    $("#returnedValue").html( "milliseconds: " + val);
-                    $("#formattedValue").html( "date: " + new Date(val).format("dddd dd mmmm, yyyy"));
-                }
-            });
-        });
-    </script>
 
 </head>
 <body>
@@ -100,13 +65,47 @@
     <br>
     <br>
     <br>
+    <!--<div id="s0" data-property="{rangeColor:'#356A8C', minVal: 1413064800000, maxVal: 1444600800000, grid:0, startAt: 1413064800000}" style="display:inline-block;*display:inherit;"></div>-->
     <div id="s0" data-property="{rangeColor:'#356A8C', minVal: 1413064800000, maxVal: 1444600800000, grid:0, startAt: new Date().getTime()}" style="display:inline-block;*display:inherit;"></div>
 </div>
 
 <div id="returnedValue"> value</div>
 <div id="formattedValue"> formatted value</div>
 
-<br>
-<br>
+<script type="text/javascript">
+
+    dateFormat.i18n = {
+        dayNames: [
+            "Do", "Lu", "Ma", "Me", "Gio", "ve", "Sa",
+            "Domenica", "Lunedì", "martedì", "Mercoledì", "Giovedì", "Venerdì", "Sabato"
+        ],
+        monthNames: [
+            "Gen", "Feb", "Mar", "Apr", "Mag", "Giu", "Lug", "Ago", "Set", "Ott", "Nov", "Dic",
+            "Gennaio", "Febbraio", "Marzo", "Aprile", "Maggio", "Giugno", "Luglio", "Agosto", "Settembre", "Ottobre", "Novembre", "Dicembre"
+        ]
+    };
+
+
+    $("#s0").mbSlider({
+        showVal: true,
+        formatValue: function (val) {
+            var formatVal = new Date(val).format("dd/m/yy");
+            return formatVal;
+        },
+        onSlideLoad: function (obj) {
+            var val = $(obj).mbgetVal();
+            $("#returnedValue").html( "milliseconds: " + val);
+            $("#formattedValue").html( "date: " + new Date(val).format("dddd dd mmmm, yyyy"));
+        },
+        onStart    : function (obj) {},
+        onSlide    : function (obj) {},
+        onStop     : function (obj) {
+            var val = $(obj).mbgetVal();
+            $("#returnedValue").html( "milliseconds: " + val);
+            $("#formattedValue").html( "date: " + new Date(val).format("dddd dd mmmm, yyyy"));
+        }
+    });
+
+</script>
 </body>
 </html>

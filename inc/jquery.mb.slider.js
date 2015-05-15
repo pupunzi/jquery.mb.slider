@@ -120,11 +120,11 @@ var nAgt=navigator.userAgent; if(!jQuery.browser){jQuery.browser={};jQuery.brows
 				startPos = startPos >= 0 ? startPos : slider.zero + parseFloat(this.options.startAt);
 				startPos = slider.options.grid * Math.round(startPos / slider.options.grid);
 
-				slider.sliderHandler.css({left: startPos - (startPos > slider.sliderHandler.outerWidth() / 2 ? slider.sliderHandler.outerWidth() / 2 : 0)});
-				slider.sliderValueLabel.css({left: startPos - (startPos > slider.sliderHandler.outerWidth() / 2 ? slider.sliderHandler.outerWidth() / 2 : 0)});
+				slider.sliderHandler.css({left: startPos - (startPos > slider.sliderHandler.outerWidth() / 2 ? slider.sliderHandler.outerWidth() : 0)});
+				slider.sliderValueLabel.css({left: startPos - (startPos > slider.sliderHandler.outerWidth() / 2 ? slider.sliderHandler.outerWidth() : 0)});
 
 				if (this.options.startAt > 0) {
-					slider.sliderRange.css({left: 0, width: startPos});
+					slider.sliderRange.css({left: 0, width: startPos -slider.sliderHandler.outerWidth() / 2});
 					slider.sliderZero.css({width: slider.zero});
 				} else {
 					slider.sliderRange.css({left: 0, width: slider.zero});
@@ -154,8 +154,8 @@ var nAgt=navigator.userAgent; if(!jQuery.browser){jQuery.browser={};jQuery.brows
 
 					if (slider.evalPosGrid > 0) {
 
-						slider.sliderRange.css({width: posInGrid - (slider.sliderHandler.outerWidth() / 2) });
-						slider.sliderZero.css({width: slider.zero});
+						slider.sliderRange.css({width: posInGrid - slider.sliderHandler.outerWidth() / 2 });
+						slider.sliderZero.css({width: slider.zero });
 
 					} else {
 
