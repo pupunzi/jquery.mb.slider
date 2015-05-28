@@ -24,7 +24,7 @@ var nAgt=navigator.userAgent; if(!jQuery.browser){jQuery.browser={};jQuery.brows
 	$.mbSlider = {
 		name   : "mb.slider",
 		author : "Matteo Bicocchi",
-		version: "1.0",
+		version: "1.6.0",
 
 		defaults: {
 			minVal     : 0,
