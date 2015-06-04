@@ -135,6 +135,9 @@ var nAgt=navigator.userAgent; if(!jQuery.browser){jQuery.browser={};jQuery.brows
 
 				slider.sliderBar.on("mousedown.mb_slider", function (e) {
 
+					e.preventDefault();
+					e.stopPropagation();
+
 					var mousePos = e.clientX - slider.sliderBar.offset().left;
 
 					var grid = (slider.options.grid * slider.sliderBar.outerWidth()) / slider.rangeVal;
@@ -178,6 +181,7 @@ var nAgt=navigator.userAgent; if(!jQuery.browser){jQuery.browser={};jQuery.brows
 					$(document).on("mousemove.mb_slider", function (e) {
 
 						e.preventDefault();
+						e.stopPropagation();
 
 						mousePos = e.clientX - slider.sliderBar.offset().left;
 
@@ -307,3 +311,4 @@ var nAgt=navigator.userAgent; if(!jQuery.browser){jQuery.browser={};jQuery.brows
   $.fn.mbgetVal = $.mbSlider.getVal;
 
 })(jQuery);
+
