@@ -120,12 +120,14 @@ var nAgt=navigator.userAgent; if(!jQuery.browser){jQuery.browser={};jQuery.brows
 				startPos = startPos >= 0 ? startPos : slider.zero + parseFloat(this.options.startAt);
 				startPos = slider.options.grid * Math.round(startPos / slider.options.grid);
 
-				slider.sliderHandler.css({left: startPos - (startPos > slider.sliderHandler.outerWidth() / 2 ? slider.sliderHandler.outerWidth() / 2 : 0)});
-				slider.sliderValueLabel.css({left: startPos - (startPos > slider.sliderHandler.outerWidth() / 2 ? slider.sliderHandler.outerWidth() / 2 : 0)});
+				var sliderHandlerPos = startPos - (startPos > slider.sliderHandler.outerWidth() / 2 ? slider.sliderHandler.outerWidth() : 0);
+
+				slider.sliderHandler.css({left: sliderHandlerPos });
+				slider.sliderValueLabel.css({left: sliderHandlerPos});
 
 				if (this.options.startAt > 0) {
-					slider.sliderRange.css({left: 0, width: startPos});
-					slider.sliderZero.css({width: slider.zero});
+					slider.sliderRange.css({left: 0, width: startPos - (slider.sliderHandler.outerWidth() / 2) });
+					slider.sliderZero.css({width: slider.zero });
 				} else {
 					slider.sliderRange.css({left: 0, width: slider.zero});
 					slider.sliderZero.css({width: startPos});
@@ -134,6 +136,8 @@ var nAgt=navigator.userAgent; if(!jQuery.browser){jQuery.browser={};jQuery.brows
 				slider.evalPosGrid = parseFloat(slider.actualPos);
 
 				slider.sliderBar.on("mousedown.mb_slider", function (e) {
+
+					e.preventDefault();
 
 					var mousePos = e.clientX - slider.sliderBar.offset().left;
 
