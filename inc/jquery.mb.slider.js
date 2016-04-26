@@ -31,6 +31,7 @@ var nAgt=navigator.userAgent; if(!jQuery.browser){jQuery.browser={};jQuery.brows
 			maxVal     : 100,
 			grid       : 5,
 			showVal    : true,
+			labelPos   : "top",
 			formatValue: function (val) {return parseFloat(val)},
 			onSlideLoad: function (o) {},
 			onStart    : function (o) {},
@@ -63,8 +64,8 @@ var nAgt=navigator.userAgent; if(!jQuery.browser){jQuery.browser={};jQuery.brows
 				slider.sliderStart = $("<div class='mb_sliderStart'/>");
 				slider.sliderEnd = $("<div class='mb_sliderEnd'/>");
 				slider.sliderValue = $("<div class='mb_sliderValue'/>").css({color: this.options.rangeColor});
-				slider.sliderZeroLabel = $("<div class='mb_sliderZeroLabel'>0</div>").css({position: "absolute", top: -18});
-				slider.sliderValueLabel = $("<div class='mb_sliderValueLabel'/>").css({position: "absolute", color: this.options.rangeColor, top: -18});
+				slider.sliderZeroLabel = $("<div class='mb_sliderZeroLabel'>0</div>").css({position: "absolute", top: (this.options.labelPos == "top" ? -18 : 29)});
+				slider.sliderValueLabel = $("<div class='mb_sliderValueLabel'/>").css({position: "absolute", color: this.options.rangeColor, top: (this.options.labelPos == "top" ? -18 : 33)});
 
 				slider.sliderBar = $("<div class='mb_sliderBar'/>").css({position: "relative", display: "block"});
 				slider.sliderRange = $("<div class='mb_sliderRange'/>").css({background: this.options.rangeColor});
@@ -121,7 +122,7 @@ var nAgt=navigator.userAgent; if(!jQuery.browser){jQuery.browser={};jQuery.brows
 				startPos = slider.options.grid * Math.round(startPos / slider.options.grid);
 
 				slider.sliderHandler.css({left: startPos - (startPos > slider.sliderHandler.outerWidth() / 2 ? slider.sliderHandler.outerWidth() : 0)});
-				slider.sliderValueLabel.css({left: startPos - (startPos > slider.sliderHandler.outerWidth() / 2 ? slider.sliderHandler.outerWidth() : 0)});
+				slider.sliderValueLabel.css({left: startPos - (startPos > slider.sliderHandler.outerWidth() / 2 ? slider.sliderHandler.outerWidth() + (slider.sliderValueLabel.outerWidth()-slider.sliderHandler.outerWidth())/2 : 0)});
 
 				if (this.options.startAt > 0) {
 					slider.sliderRange.css({left: 0, width: startPos -slider.sliderHandler.outerWidth() / 2});
@@ -153,7 +154,8 @@ var nAgt=navigator.userAgent; if(!jQuery.browser){jQuery.browser={};jQuery.brows
 					slider.evalPosGrid = slider.options.grid * Math.round(evalPos / slider.options.grid);
 
 					slider.sliderHandler.css({left: posInGrid > slider.sliderHandler.outerWidth() ? posInGrid - (slider.sliderHandler.outerWidth() / 2) : 0});
-					slider.sliderValueLabel.css({left: posInGrid > slider.sliderHandler.outerWidth() ? posInGrid - (slider.sliderHandler.outerWidth() / 2) : 0});
+					slider.sliderValueLabel.css({left: posInGrid > slider.sliderHandler.outerWidth() ? posInGrid - (slider.sliderHandler.outerWidth() / 2) - (slider.sliderValueLabel.outerWidth()-slider.sliderHandler.outerWidth())/2 : 0});
+					
 
 					if (slider.evalPosGrid > 0) {
 
@@ -226,7 +228,7 @@ var nAgt=navigator.userAgent; if(!jQuery.browser){jQuery.browser={};jQuery.brows
 						} else {
 
 							slider.sliderHandler.css({left: posInGrid - (slider.sliderHandler.outerWidth() / 2)});
-							slider.sliderValueLabel.css({left: posInGrid - (slider.sliderHandler.outerWidth() / 2)});
+							slider.sliderValueLabel.css({left: posInGrid - (slider.sliderHandler.outerWidth() / 2) - (slider.sliderValueLabel.outerWidth()-slider.sliderHandler.outerWidth())/2});
 
 							if (slider.evalPosGrid > 0) {
 
@@ -275,7 +277,7 @@ var nAgt=navigator.userAgent; if(!jQuery.browser){jQuery.browser={};jQuery.brows
 			slider.evalPosGrid = slider.options.grid * Math.round(val / slider.options.grid);
 
 			slider.sliderHandler.css({left: posInGrid - (slider.sliderHandler.outerWidth() / 2)});
-			slider.sliderValueLabel.css({left: posInGrid - (slider.sliderHandler.outerWidth() / 2)});
+			slider.sliderValueLabel.css({left: posInGrid - (slider.sliderHandler.outerWidth() / 2) - (slider.sliderValueLabel.outerWidth()-slider.sliderHandler.outerWidth())/2});
 
 			if (slider.evalPosGrid > 0) {
 
