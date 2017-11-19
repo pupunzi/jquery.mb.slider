@@ -99,12 +99,12 @@
     <br>
     <br>Decimal:
     <div id="decimal" style="">
-        <div id="s10" class="mb_slider" data-property="{minVal:-10, maxVal:10, grid:1, startAt:-3}" style="display:block;"></div>
+        <div id="s10" class="mb_slider" data-property="{minVal:-10,rangeColor:'green', maxVal:10, grid:1, startAt:-3}" style="display:block;"></div>
     </div>
     <br>
     <br>
     <div id="ex0" style="">
-        <div id="s1"  class="mb_slider" data-property="{rangeColor:'gray',negativeColor:'#ffcc00', startAt:78, grid:0}" style="display:inline-block;*display:inherit;"></div>
+        <div id="s1"  class="mb_slider" data-property="{rangeColor:'gray', startAt:78, grid:0}" style="display:inline-block;*display:inherit;"></div>
         <br>
         <div id="s2" class="mb_slider" data-property="{rangeColor:'gray', startAt:-30}" style="display:inline-block;*display:inherit;"></div>
         <br>
@@ -169,7 +169,7 @@
 
     $("#ex0 .mb_slider").mbSlider({
         formatValue: function(val){
-            return "# "+val;
+            return "#"+val;
         }
     });
 
@@ -182,6 +182,10 @@
 
     $("#ex2 .mb_slider").mbSlider({
         maxVal:255,
+        formatValue: function(val){
+            var formatVal = this.element.id + ": " + val;
+            return formatVal;
+        },
         onSlideLoad:function(){changeColor($("#R").mbgetVal(),$("#G").mbgetVal(),$("#B").mbgetVal());},
         onSlide:function(){changeColor($("#R").mbgetVal(),$("#G").mbgetVal(),$("#B").mbgetVal());}
     });

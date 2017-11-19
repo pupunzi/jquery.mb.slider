@@ -67,7 +67,7 @@ jQuery.browser.mobile = jQuery.browser.android || jQuery.browser.blackberry || j
 			showVal      : true,
 			labelPos     : "top",
 			rangeColor   : "#000",
-			negativeColor: "#4a92d3",
+			negativeColor: "#e20000",
 			formatValue  : function (val) {return parseFloat(val)},
 			onSlideLoad  : function (o) {},
 			onStart      : function (o) {},
@@ -79,12 +79,12 @@ jQuery.browser.mobile = jQuery.browser.android || jQuery.browser.blackberry || j
 			return this.each(function () {
 				var slider = this;
 				var $slider = $(slider);
-
 				$slider.addClass("mb_slider");
 
-				this.options = {};
-				this.metadata = $slider.data("property") && typeof $slider.data("property") == "string" ? eval('(' + $slider.data("property") + ')') : $slider.data("property");
-				$.extend(this.options, $.mbSlider.defaults, options, this.metadata);
+				slider.options = {};
+				slider.metadata = $slider.data("property") && typeof $slider.data("property") == "string" ? eval('(' + $slider.data("property") + ')') : $slider.data("property");
+				$.extend(slider.options, $.mbSlider.defaults, options, this.metadata);
+				slider.options.element = slider;
 
 				if (slider.options.grid == 0)
 					slider.options.grid = 1;
@@ -101,8 +101,7 @@ jQuery.browser.mobile = jQuery.browser.android || jQuery.browser.blackberry || j
 				slider.sliderEnd = $("<div class='mb_sliderEnd'/>");
 				slider.sliderValue = $("<div class='mb_sliderValue'/>").css({color: this.options.rangeColor});
 				slider.sliderZeroLabel = $("<div class='mb_sliderZeroLabel'>0</div>").css({position: "absolute", top: (slider.options.labelPos == "top" ? -18 : 29)});
-				slider.sliderValueLabel = $("<div class='mb_sliderValueLabel'/>").css({position: "absolute", color: slider.options.rangeColor, top: (slider.options.labelPos == "top" ? -18 : 33)});
-//				slider.sliderValueLabel.attr("data-color",slider.options.rangeColor);
+				slider.sliderValueLabel = $("<div class='mb_sliderValueLabel'/>").css({position: "absolute", borderTop: "2px solid " + slider.options.rangeColor});
 
 				slider.sliderBar = $("<div class='mb_sliderBar'/>").css({position: "relative", display: "block"});
 				slider.sliderRange = $("<div class='mb_sliderRange'/>").css({background: slider.options.rangeColor});
@@ -170,7 +169,10 @@ jQuery.browser.mobile = jQuery.browser.android || jQuery.browser.blackberry || j
 				/**
 				 * Slider Events
 				 */
-				slider.sliderBar.on("mousedown.mb_slider", function (e) {
+
+				var elements = slider.sliderBar.add(slider.sliderHandler);
+
+				elements.on("mousedown.mb_slider", function (e) {
 
 					if (!$(e.target).is(slider.sliderHandler))
 						setNewPosition(e);
@@ -208,10 +210,12 @@ jQuery.browser.mobile = jQuery.browser.android || jQuery.browser.blackberry || j
 			slider.sliderHandler.css({left: posInGrid - (slider.sliderHandler.outerWidth() / 2)});
 			slider.sliderValueLabel.css({left: posInGrid - (slider.sliderHandler.outerWidth() / 2) - (slider.sliderValueLabel.outerWidth() - slider.sliderHandler.outerWidth()) / 2});
 
-			if (slider.evalPosGrid > 0) {
+			if (slider.evalPosGrid >= 0) {
+				slider.sliderValueLabel.css({borderTop: "2px solid " + slider.options.rangeColor});
 				slider.sliderRange.css({left: 0, width: posInGrid, background: slider.options.rangeColor}).removeClass("negative");
 				slider.sliderZero.css({width: slider.zero});
 			} else {
+				slider.sliderValueLabel.css({borderTop: "2px solid " + slider.options.negativeColor});
 				slider.sliderRange.css({left: 0, width: slider.zero, background: slider.options.negativeColor}).addClass("negative");
 				slider.sliderZero.css({width: posInGrid + (slider.sliderHandler.outerWidth() / 2)});
 			}
