@@ -147,37 +147,24 @@ jQuery.browser.mobile = jQuery.browser.android || jQuery.browser.blackberry || j
 				$(slider).mbsetVal(slider.evalPosGrid);
 
 				function setNewPosition(e) {
+
 					e.preventDefault();
 					e.stopPropagation();
+
 					var mousePos = e.clientX - slider.sliderBar.offset().left;
-
-					//mouse is moving externally of the slider-bar
-/*
-					if (mousePos < 0 || mousePos > slider.sliderBar.outerWidth())
-						return;
-*/
-
 					var grid = (slider.options.grid * slider.sliderBar.outerWidth()) / slider.rangeVal;
 					var posInGrid = grid * Math.floor(mousePos / grid);
-					var evalPos = Math.round(((slider.options.maxVal - slider.options.minVal) * posInGrid) / (slider.sliderBar.outerWidth() - (slider.sliderHandler.outerWidth() / 2)) + parseFloat(slider.options.minVal));
-					slider.evalPosGrid = slider.options.grid * evalPos / slider.options.grid;
+					var evalPos = ((slider.options.maxVal - slider.options.minVal) * posInGrid) / (slider.sliderBar.outerWidth() - (slider.sliderHandler.outerWidth() / 2)) + parseFloat(slider.options.minVal);
 
-					if (slider.evalPosGrid > slider.options.maxVal)
-						slider.evalPosGrid = slider.options.maxVal;
-					if (slider.evalPosGrid < slider.options.minVal)
-						slider.evalPosGrid = slider.options.minVal;
+					slider.evalPosGrid = Math.max(slider.options.minVal, Math.min(slider.options.maxVal, slider.options.grid * Math.round(evalPos / slider.options.grid)));
 
-					var unitInPixel = slider.sliderBar.outerWidth() / slider.rangeVal * slider.options.grid;
-					var gridStep = Math.round(mousePos / unitInPixel);
-
-					if(slider.gridStep != gridStep){
-						slider.gridStep = gridStep;
-
-						$(slider).mbsetVal(slider.evalPosGrid);
-
-						if (typeof slider.options.onSlide == "function")
-							slider.options.onSlide(slider);
+					if (typeof slider.options.onSlide == "function" && slider.gridStep != posInGrid) {
+						slider.gridStep = posInGrid;
+						slider.options.onSlide(slider);
 					}
+
+					$(slider).mbsetVal(slider.evalPosGrid);
+
 				}
 
 				/**
@@ -197,8 +184,7 @@ jQuery.browser.mobile = jQuery.browser.android || jQuery.browser.blackberry || j
 
 					$(document).on("mouseup.mb_slider", function () {
 						$(document).off("mousemove.mb_slider").off("mouseup.mb_slider");
-
-						if ( typeof slider.options.onStop == "function")
+						if (typeof slider.options.onStop == "function")
 							slider.options.onStop(slider);
 					});
 
