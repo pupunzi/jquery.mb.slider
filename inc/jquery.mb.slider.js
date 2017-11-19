@@ -146,16 +146,34 @@ jQuery.browser.mobile = jQuery.browser.android || jQuery.browser.blackberry || j
 				slider.evalPosGrid = parseFloat(slider.actualPos);
 				$(slider).mbsetVal(slider.evalPosGrid);
 
-				function getSliderPos(e) {
+				function setNewPosition(e) {
 					e.preventDefault();
 					e.stopPropagation();
 					var mousePos = e.clientX - slider.sliderBar.offset().left;
+
+					//mouse is moving externally of the slider-bar
+					if (mousePos < 0 || mousePos > slider.sliderBar.outerWidth())
+						return;
+
 					var grid = (slider.options.grid * slider.sliderBar.outerWidth()) / slider.rangeVal;
 					var posInGrid = grid * Math.floor(mousePos / grid);
 					var evalPos = Math.round(((slider.options.maxVal - slider.options.minVal) * posInGrid) / (slider.sliderBar.outerWidth() - (slider.sliderHandler.outerWidth() / 2)) + parseFloat(slider.options.minVal));
-					slider.evalPosGrid = slider.options.grid * Math.round(evalPos / slider.options.grid);
+					slider.evalPosGrid = slider.options.grid * evalPos / slider.options.grid;
 
-					$(slider).mbsetVal(slider.evalPosGrid);
+					if (slider.evalPosGrid > slider.options.maxVal)
+						slider.evalPosGrid = slider.options.maxVal;
+					if (slider.evalPosGrid < slider.options.minVal)
+						slider.evalPosGrid = slider.options.minVal;
+
+					var unitInPixel = slider.sliderBar.outerWidth() / slider.rangeVal * slider.options.grid;
+					var gridStep = Math.round(mousePos / unitInPixel);
+
+					if(slider.gridStep != gridStep){
+						slider.gridStep = gridStep;
+						$(slider).mbsetVal(slider.evalPosGrid);
+						if (typeof slider.options.onSlide == "function")
+							slider.options.onSlide(slider);
+					}
 				}
 
 				/**
@@ -164,27 +182,25 @@ jQuery.browser.mobile = jQuery.browser.android || jQuery.browser.blackberry || j
 				slider.sliderBar.on("mousedown.mb_slider", function (e) {
 
 					if (!$(e.target).is(slider.sliderHandler))
-						getSliderPos(e);
+						setNewPosition(e);
 
-					if (slider.options.onSlide)
-						slider.options.onSlide(slider);
-					if (slider.options.onStart)
+					if (typeof slider.options.onStart == "function")
 						slider.options.onStart(slider);
 
 					$(document).on("mousemove.mb_slider", function (e) {
-						getSliderPos(e);
-						if (slider.options.onSlide)
-							slider.options.onSlide(slider);
+						setNewPosition(e);
 					});
 
 					$(document).on("mouseup.mb_slider", function () {
 						$(document).off("mousemove.mb_slider").off("mouseup.mb_slider");
-						if (slider.options.onStop)
+
+						if ( typeof slider.options.onStop == "function")
 							slider.options.onStop(slider);
 					});
 
 				});
-				if (slider.options.onSlideLoad)
+
+				if (typeof slider.options.onSlideLoad == "function")
 					slider.options.onSlideLoad(slider);
 			});
 		},
@@ -214,14 +230,8 @@ jQuery.browser.mobile = jQuery.browser.android || jQuery.browser.blackberry || j
 		},
 
 		getVal: function () {
-
 			var slider = $(this).get(0);
-			var val = slider.evalPosGrid;
-			if (val && val > slider.options.maxVal) val = slider.options.maxVal;
-			if (val && val < slider.options.minVal) val = slider.options.minVal;
-			val = !val ? 0 : val;
-			return val;
-
+			return slider.evalPosGrid;
 		}
 	};
 

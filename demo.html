@@ -79,7 +79,6 @@
             border-radius: 4px;
         }
 
-
     </style>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <title>mb.slider</title>
@@ -168,7 +167,9 @@
         formatValue: function(val){
             var formatVal = val/10;
             return formatVal;
-        }
+        },
+        onSlide:function(o){}
+
     });
 
     $("#ex0 .mb_slider").mbSlider({
