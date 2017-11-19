@@ -1,15 +1,24 @@
 <!doctype html>
 
-<!--
-  ~ jquery.mb.components
-  ~ Copyright (c) 2001-2010. Matteo Bicocchi (Pupunzi); Open lab srl, Firenze - Italy
-  ~ email: info@pupunzi.com
-  ~ site: http://pupunzi.com
-  ~
-  ~ Licences: MIT, GPL
-  ~ http://www.opensource.org/licenses/mit-license.php
-  ~ http://www.gnu.org/licenses/gpl.html
-  -->
+<!--::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+  jquery.mb.components
+  file: demo.html
+  last modified: 18/11/17 20.15
+  Version:  {{ version }}
+  Build:  {{ buildnum }}
+
+  Open Lab s.r.l., Florence - Italy
+  email: matteo@open-lab.com
+  site: 	http://pupunzi.com
+  	http://open-lab.com
+  blog: 	http://pupunzi.open-lab.com
+
+  Licences: MIT, GPL
+  http://www.opensource.org/licenses/mit-license.php
+  http://www.gnu.org/licenses/gpl.html
+
+  Copyright (c) 2001-2017. Matteo Bicocchi (Pupunzi)
+  :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::-->
 
 <html>
 <head>
@@ -23,6 +32,7 @@
             padding-top:90px;
             padding-left:50px;
         }
+
         .wrapper h1{
             font-family:Arial, Helvetica, sans-serif;
             font-size:26px;
@@ -74,7 +84,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <title>mb.slider</title>
     <link href="css/mb.slider.css" media="all" rel="stylesheet" type="text/css">
-    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.js"></script>
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.js"></script>
     <script type="text/javascript" src="inc/formatDate.js"></script>
     <script type="text/javascript" src="inc/jquery.mb.slider.js"></script>
 
@@ -84,8 +94,13 @@
 <div class="wrapper">
     <h1>mb.slider.demo</h1>
     <br><br>
-    <div id="ex3" style="">
-        <div id="s0" class="mb_slider" data-property="{rangeColor:'gray',negativeColor:'#ffcc00', minVal:1413064800000, maxVal:1664402400000, grid:0, startAt:new Date().getTime()}" style="display:block;"></div>
+    <div id="ex3" style="">Date:
+        <div id="s0" class="mb_slider" data-property="{minVal:1413064800000, maxVal:1664402400000, grid:0, startAt:new Date().getTime()}" style="display:block;"></div>
+    </div>
+
+    <br><br>Decimal:
+    <div id="decimal" style="">
+        <div id="s10" class="mb_slider" data-property="{minVal:-10, maxVal:10, grid:0, startAt:-3}" style="display:block;"></div>
     </div>
 
 
@@ -119,9 +134,9 @@
         <div id="colorChange"></div>
 
         <div id="ex2" style="display:inline-block;position:relative;">
-            <div id="R" class="mb_slider" data-property="{rangeColor:'red',negativeColor:'#ffcc00', startAt:100, grid:1, maxVal:255}" style="display:inline-block;"></div><br>
-            <div id="G" class="mb_slider" data-property="{rangeColor:'lime',negativeColor:'#ffcc00', startAt:45, grid:1, maxVal:255}"  style="display:inline-block;"></div><br>
-            <div id="B" class="mb_slider" data-property="{rangeColor:'blue',negativeColor:'#ffcc00', startAt:74, grid:1, maxVal:255}"  style="display:inline-block;"></div>
+            <div id="R" class="mb_slider" data-property="{rangeColor:'#FF0000', startAt:100, grid:1, maxVal:255}" style="display:block;"></div>
+            <div id="G" class="mb_slider" data-property="{rangeColor:'#00FF00', startAt:45, grid:1, maxVal:255}"  style="display:block;"></div>
+            <div id="B" class="mb_slider" data-property="{rangeColor:'#0000FF', startAt:74, grid:1, maxVal:255}"  style="display:block;"></div>
         </div>
         <br>
         <div style="clear:both;padding:20px;">
@@ -149,9 +164,16 @@
         }
     });
 
+    $("#decimal .mb_slider").mbSlider({
+        formatValue: function(val){
+            var formatVal = val/10;
+            return formatVal;
+        }
+    });
+
     $("#ex0 .mb_slider").mbSlider({
         formatValue: function(val){
-            return "#"+val;
+            return "# "+val;
         }
     });
 

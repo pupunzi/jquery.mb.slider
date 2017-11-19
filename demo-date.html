@@ -14,7 +14,7 @@
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <title>mb.slider</title>
+    <title>mb.slider - Date range</title>
 
     <style type="text/css">
 
@@ -53,7 +53,7 @@
     </style>
 
     <link href="css/mb.slider.css" media="all" rel="stylesheet" type="text/css">
-    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.js"></script>
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.js"></script>
     <script type="text/javascript" src="inc/formatDate.js"></script>
     <script type="text/javascript" src="inc/jquery.mb.slider.js"></script>
 
@@ -61,18 +61,25 @@
 <body>
 
 <div class="wrapper">
-    <h1>mb.slider.demo</h1>
+    <h1>mb.slider.demo - Date range</h1>
     <br>
     <br>
     <br>
-    <!--<div id="s0" data-property="{rangeColor:'#356A8C', minVal: 1413064800000, maxVal: 1444600800000, grid:0, startAt: 1413064800000}" style="display:inline-block;*display:inherit;"></div>-->
-    <div id="s0" data-property="{rangeColor:'#356A8C', minVal: 1413064800000, maxVal: 1444600800000, grid:0, startAt: new Date().getTime()}" style="display:inline-block;*display:inherit;"></div>
+    <!--<div id="s0" data-property="{rangeColor:'rgba(113, 208, 240, 0.64)', minVal: 1413064800000, maxVal: 1664402400000, grid:0, startAt: new Date().getTime()}" style="display:inline-block;*display:inherit;"></div>-->
+    <div id="s0" data-property="{rangeColor:'rgba(113, 208, 240, 0.64)', minVal: 1413064800000, maxVal: 1664402400000, grid:0, startAt: new Date().getTime()}" style="display:inline-block;*display:inherit;"></div>
 </div>
 
 <div id="returnedValue"> value</div>
 <div id="formattedValue"> formatted value</div>
 
 <script type="text/javascript">
+
+    if (self.location.href == top.location.href){
+        $("body").css({font:"normal 13px/16px 'trebuchet MS', verdana, sans-serif"});
+        var logo=$("<a href='http://pupunzi.com'><img id='logo' border='0' src='http://pupunzi.com/images/logo.png' alt='mb.ideas.repository' style='display:none;'></a>").css({position:"absolute"});
+        $("body").prepend(logo);
+        $("#logo").fadeIn();
+    }
 
     dateFormat.i18n = {
         dayNames: [
@@ -98,7 +105,11 @@
             $("#formattedValue").html( "date: " + new Date(val).format("dddd dd mmmm, yyyy"));
         },
         onStart    : function (obj) {},
-        onSlide    : function (obj) {},
+        onSlide    : function (obj) {
+            var val = $(obj).mbgetVal();
+            $("#returnedValue").html( "milliseconds: " + val);
+            $("#formattedValue").html( "date: " + new Date(val).format("dddd dd mmmm, yyyy"));
+        },
         onStop     : function (obj) {
             var val = $(obj).mbgetVal();
             $("#returnedValue").html( "milliseconds: " + val);
