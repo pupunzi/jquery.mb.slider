@@ -63,7 +63,7 @@ jQuery.browser.mobile = jQuery.browser.android || jQuery.browser.blackberry || j
 		defaults: {
 			minVal       : 0,
 			maxVal       : 100,
-			grid         : 5,
+			grid         : 0,
 			showVal      : true,
 			labelPos     : "top",
 			rangeColor   : "#000",
@@ -152,8 +152,10 @@ jQuery.browser.mobile = jQuery.browser.android || jQuery.browser.blackberry || j
 					var mousePos = e.clientX - slider.sliderBar.offset().left;
 
 					//mouse is moving externally of the slider-bar
+/*
 					if (mousePos < 0 || mousePos > slider.sliderBar.outerWidth())
 						return;
+*/
 
 					var grid = (slider.options.grid * slider.sliderBar.outerWidth()) / slider.rangeVal;
 					var posInGrid = grid * Math.floor(mousePos / grid);
@@ -170,7 +172,9 @@ jQuery.browser.mobile = jQuery.browser.android || jQuery.browser.blackberry || j
 
 					if(slider.gridStep != gridStep){
 						slider.gridStep = gridStep;
+
 						$(slider).mbsetVal(slider.evalPosGrid);
+
 						if (typeof slider.options.onSlide == "function")
 							slider.options.onSlide(slider);
 					}

@@ -96,14 +96,13 @@
     <div id="ex3" style="">Date:
         <div id="s0" class="mb_slider" data-property="{minVal:1413064800000, maxVal:1664402400000, grid:0, startAt:new Date().getTime()}" style="display:block;"></div>
     </div>
-
-    <br><br>Decimal:
+    <br>
+    <br>Decimal:
     <div id="decimal" style="">
         <div id="s10" class="mb_slider" data-property="{minVal:-10, maxVal:10, grid:0, startAt:-3}" style="display:block;"></div>
     </div>
-
-
-    <br><br>
+    <br>
+    <br>
     <div id="ex0" style="">
         <div id="s1"  class="mb_slider" data-property="{rangeColor:'gray',negativeColor:'#ffcc00', startAt:78, grid:1}" style="display:inline-block;*display:inherit;"></div>
         <br>
@@ -131,7 +130,6 @@
     <br>
     <div id="colorChooser">
         <div id="colorChange"></div>
-
         <div id="ex2" style="display:inline-block;position:relative;">
             <div id="R" class="mb_slider" data-property="{rangeColor:'#FF0000', startAt:100, grid:1, maxVal:255}" style="display:block;"></div>
             <div id="G" class="mb_slider" data-property="{rangeColor:'#00FF00', startAt:45, grid:1, maxVal:255}"  style="display:block;"></div>
@@ -147,8 +145,6 @@
 
 <script type="text/javascript">
 
-
-    //    $(function(){
     if (self.location.href == top.location.href){
         $("body").css({font:"normal 13px/16px 'trebuchet MS', verdana, sans-serif"});
         var logo=$("<a href='http://pupunzi.com'><img id='logo' border='0' src='http://pupunzi.com/images/logo.png' alt='mb.ideas.repository' style='display:none;'></a>").css({position:"absolute"});
@@ -169,7 +165,6 @@
             return formatVal;
         },
         onSlide:function(o){}
-
     });
 
     $("#ex0 .mb_slider").mbSlider({
@@ -184,15 +179,17 @@
             $("#"+o.id+"_val").find(".val").val($(o).mbgetVal());
         }
     });
+
     $("#ex2 .mb_slider").mbSlider({
         maxVal:255,
         onSlideLoad:function(){changeColor($("#R").mbgetVal(),$("#G").mbgetVal(),$("#B").mbgetVal());},
         onSlide:function(){changeColor($("#R").mbgetVal(),$("#G").mbgetVal(),$("#B").mbgetVal());}
     });
 
-    //COLOR_PICKER EXAMPLE
-
-    //Function to get hex from rgb colour
+    /**
+     *  COLOR PICKER EXAMPLE
+     */
+    //Get hex from rgb colour
     function rgb2hex(rgb) {
         var hex= function(x) {
             var hexDigits = new Array("0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "A", "B", "C", "D", "E", "F");
@@ -201,7 +198,7 @@
         return "#" + hex(rgb[0]) + hex(rgb[1]) + hex(rgb[2]);
     }
 
-    //Function to get rgb from hex colour
+    //Get rgb from hex colour
     function hex2rgb(v){
         var val=(v.charAt(0)=="#") ? v.substring(1,7):"ffffff";
         var R=parseInt(val.substring(0,2),16);
@@ -210,13 +207,14 @@
         return [R,G,B];
     }
 
+    //Change colour
     function changeColor(R,G,B){
         var HEX=rgb2hex([R,G,B]);
         $("#colorChange").css("backgroundColor", HEX );
         $("#colorValueHex").html("<b>"+HEX+"</b>");
         $("#colorValueRGB").html("<b>rgb ("+hex2rgb(HEX)[0]+", "+hex2rgb(HEX)[1]+", "+hex2rgb(HEX)[2]+")</b>");
     }
-    //    });
+
 </script>
 
 </body>
