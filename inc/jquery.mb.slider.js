@@ -173,7 +173,7 @@
 			var posInGrid = grid * Math.round(startPos / grid);
 
 			slider.evalPosGrid = slider.options.grid * Math.round(val / slider.options.grid);
-			slider.sliderHandler.css({left: posInGrid - (slider.sliderHandler.outerWidth() / 2)});
+			slider.sliderHandler.css({left: posInGrid - slider.sliderHandler.outerWidth()/2});
 			slider.sliderValueLabel.css({left: posInGrid - (slider.sliderHandler.outerWidth() / 2) - (slider.sliderValueLabel.outerWidth() - slider.sliderHandler.outerWidth()) / 2});
 
 			if (slider.evalPosGrid >= 0) {
@@ -186,10 +186,10 @@
 				slider.sliderZero.css({width: posInGrid + (slider.sliderHandler.outerWidth() / 2)});
 			}
 
-			if (val == slider.options.maxVal)
+			if (startPos >= slider.sliderBar.outerWidth() && slider.sliderValueLabel.outerWidth() > 40)
 				slider.sliderValueLabel.addClass("right");
 
-			else if (val == slider.options.minVal)
+			else if (startPos <= 0 && slider.sliderValueLabel.outerWidth() > 40)
 				slider.sliderValueLabel.addClass("left");
 
 			else
