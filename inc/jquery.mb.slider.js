@@ -79,7 +79,6 @@
 				if (slider.options.showVal) $(slider).append(slider.sliderEnd);
 				if (slider.options.showVal) $(slider).prepend(slider.sliderStart);
 				slider.sliderBar.append(slider.sliderRange);
-				slider.sliderBar.append(slider.sliderRange);
 
 				if (slider.options.minVal < 0) {
 					slider.sliderBar.append(slider.sliderZero);
