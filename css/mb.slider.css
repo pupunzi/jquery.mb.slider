@@ -112,3 +112,25 @@
   border-width: 5px 5px 0 5px;
   border-color: #000 transparent transparent transparent;
 }
+
+.mb_sliderValueLabel.right{
+  left: auto!important;
+  right: -15px!important;
+}
+
+.mb_sliderValueLabel.left{
+  left: -15px!important;
+  right: auto!important;
+}
+
+.mb_sliderValueLabel.right:after{
+  left:auto;
+  right: 10px;
+  margin: auto;
+}
+
+.mb_sliderValueLabel.left:after{
+  right:auto;
+  left: 10px;
+  margin: auto;
+}

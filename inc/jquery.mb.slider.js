@@ -117,7 +117,7 @@
 
 					var mousePos = e.clientX - slider.sliderBar.offset().left;
 					var grid = (slider.options.grid * slider.sliderBar.outerWidth()) / slider.rangeVal;
-					var posInGrid = grid * Math.floor(mousePos / grid);
+					var posInGrid = grid * Math.round(mousePos / grid);
 					var evalPos = ((slider.options.maxVal - slider.options.minVal) * posInGrid) / (slider.sliderBar.outerWidth() - (slider.sliderHandler.outerWidth() / 2)) + parseFloat(slider.options.minVal);
 
 					slider.evalPosGrid = Math.max(slider.options.minVal, Math.min(slider.options.maxVal, slider.options.grid * Math.round(evalPos / slider.options.grid)));
@@ -133,11 +133,12 @@
 
 				/**
 				 * Slider Events
+				 *
+				 * Add start event both on slider bar and on slider handler
 				 */
+				var sliderElements = slider.sliderBar.add(slider.sliderHandler);
 
-				var elements = slider.sliderBar.add(slider.sliderHandler);
-
-				elements.on("mousedown.mb_slider", function (e) {
+				sliderElements.on("mousedown.mb_slider", function (e) {
 
 					if (!$(e.target).is(slider.sliderHandler))
 						setNewPosition(e);
@@ -184,6 +185,17 @@
 				slider.sliderRange.css({left: 0, width: slider.zero, background: slider.options.negativeColor}).addClass("negative");
 				slider.sliderZero.css({width: posInGrid + (slider.sliderHandler.outerWidth() / 2)});
 			}
+
+			if (val == slider.options.maxVal)
+				slider.sliderValueLabel.addClass("right");
+
+			else if (val == slider.options.minVal)
+				slider.sliderValueLabel.addClass("left");
+
+			else
+				slider.sliderValueLabel.removeClass("left right");
+
+
 			slider.sliderValue.html(val >= slider.options.minVal ? slider.evalPosGrid : slider.options.minVal);
 			slider.sliderValueLabel.html(slider.options.formatValue(val >= slider.options.minVal ? slider.evalPosGrid : slider.options.minVal));
 		},
