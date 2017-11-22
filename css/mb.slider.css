@@ -34,6 +34,10 @@
   height: 100%;
 }
 
+.mb_sliderHandler:hover{
+  background-color: #c3e7ff;
+}
+
 .mb_sliderEnd, .mb_sliderStart, .mb_sliderValue{
   padding:7px;
   position:relative;
