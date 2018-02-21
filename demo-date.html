@@ -1,72 +1,82 @@
 <!doctype html>
+<!--::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+  jquery.mb.components
+  file: demo.html
+  last modified: 18/11/17 20.15
+  Version:  {{ version }}
+  Build:  {{ buildnum }}
 
-<!--
-  ~ jquery.mb.components
-  ~ Copyright (c) 2001-2010. Matteo Bicocchi (Pupunzi); Open lab srl, Firenze - Italy
-  ~ email: info@pupunzi.com
-  ~ site: http://pupunzi.com
-  ~
-  ~ Licences: MIT, GPL
-  ~ http://www.opensource.org/licenses/mit-license.php
-  ~ http://www.gnu.org/licenses/gpl.html
-  -->
+  Open Lab s.r.l., Florence - Italy
+  email: matteo@open-lab.com
+  site: 	http://pupunzi.com
+  	http://open-lab.com
+  blog: 	http://pupunzi.open-lab.com
+
+  Licences: MIT, GPL
+  http://www.opensource.org/licenses/mit-license.php
+  http://www.gnu.org/licenses/gpl.html
+
+  Copyright (c) 2001-2017. Matteo Bicocchi (Pupunzi)
+  :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::-->
 
 <html>
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <title>mb.slider - Date range</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <title>mb.slider - Date range</title>
 
-    <style type="text/css">
+  <style type="text/css">
 
-        body{
-            font:14px/14px Arial, sans-serif;
-            color:gray;
-            background-color: rgb(255, 249, 248);
-        }
+    body{
+      font:14px/14px Arial, sans-serif;
+      color:gray;
+      background-color: rgb(255, 249, 248);
+    }
 
-        .wrapper{
-            font-family:Arial, Helvetica, sans-serif;
-            padding-top:90px;
-            padding-left:50px;
-        }
+    .wrapper{
+      font-family:Arial, Helvetica, sans-serif;
+      padding-top:90px;
+      padding-left:50px;
+    }
 
-        .wrapper h1{
-            font-family:Arial, Helvetica, sans-serif;
-            font-size:26px;
-        }
+    .wrapper h1{
+      font-family:Arial, Helvetica, sans-serif;
+      font-size:26px;
+    }
 
-        #returnedValue, #formattedValue{
-            position: relative;
-            width: 320px;
-            font-size: 20px;
-            padding: 20px;
-            background: rgba(25, 34, 37, 0.2);
-            color: #333;
-            margin: auto auto 10px;
-            border-radius: 10px;
-        }
+    #returnedValue, #formattedValue{
+      position: relative;
+      width: 320px;
+      font-size: 20px;
+      padding: 20px;
+      background: rgba(25, 34, 37, 0.2);
+      color: #333;
+      margin: auto auto 10px;
+      border-radius: 10px;
+    }
 
-        #formattedValue{
-            background: rgba(255, 152, 0, 0.2);
-        }
+    #formattedValue{
+      background: rgba(255, 152, 0, 0.2);
+    }
 
-    </style>
+  </style>
 
-    <link href="css/mb.slider.css" media="all" rel="stylesheet" type="text/css">
-    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.js"></script>
-    <script type="text/javascript" src="inc/formatDate.js"></script>
-    <script type="text/javascript" src="inc/jquery.mb.slider.js"></script>
+  <link href="css/mb.slider.css" media="all" rel="stylesheet" type="text/css">
+  <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.js"></script>
+  <script type="text/javascript" src="inc/formatDate.js"></script>
+  <script type="text/javascript" src="inc/jquery.mb.slider.js"></script>
 
 </head>
 <body>
 
 <div class="wrapper">
-    <h1>mb.slider.demo - Date range</h1>
-    <br>
-    <br>
-    <br>
-    <!--<div id="s0" data-property="{rangeColor:'rgba(113, 208, 240, 0.64)', minVal: 1413064800000, maxVal: 1664402400000, grid:0, startAt: new Date().getTime()}" style="display:inline-block;*display:inherit;"></div>-->
-    <div id="s0" data-property="{rangeColor:'rgba(113, 208, 240, 0.64)', minVal: 1413064800000, maxVal: 1664402400000, grid:0, startAt: new Date().getTime()}" style="display:inline-block;*display:inherit;"></div>
+  <h1>mb.slider.demo - Date range</h1>
+  <br>
+  <br>
+  <br>
+  <script>
+    var maxVal = new Date().getTime();
+  </script>
+  <div id="s0" data-property="{rangeColor:'rgba(113, 208, 240, 0.64)', minVal: 1413064800000, maxVal: maxVal, grid:0, startAt: new Date().getTime()}" style="display:inline-block;*display:inherit;"></div>
 </div>
 
 <div id="returnedValue"> value</div>
@@ -74,48 +84,48 @@
 
 <script type="text/javascript">
 
-    if (self.location.href == top.location.href){
-        $("body").css({font:"normal 13px/16px 'trebuchet MS', verdana, sans-serif"});
-        var logo=$("<a href='http://pupunzi.com'><img id='logo' border='0' src='http://pupunzi.com/images/logo.png' alt='mb.ideas.repository' style='display:none;'></a>").css({position:"absolute"});
-        $("body").prepend(logo);
-        $("#logo").fadeIn();
+  if (self.location.href == top.location.href){
+    $("body").css({font:"normal 13px/16px 'trebuchet MS', verdana, sans-serif"});
+    var logo=$("<a href='http://pupunzi.com'><img id='logo' border='0' src='http://pupunzi.com/images/logo.png' alt='mb.ideas.repository' style='display:none;'></a>").css({position:"absolute"});
+    $("body").prepend(logo);
+    $("#logo").fadeIn();
+  }
+
+  dateFormat.i18n = {
+    dayNames: [
+      "Do", "Lu", "Ma", "Me", "Gio", "ve", "Sa",
+      "Domenica", "Lunedì", "martedì", "Mercoledì", "Giovedì", "Venerdì", "Sabato"
+    ],
+    monthNames: [
+      "Gen", "Feb", "Mar", "Apr", "Mag", "Giu", "Lug", "Ago", "Set", "Ott", "Nov", "Dic",
+      "Gennaio", "Febbraio", "Marzo", "Aprile", "Maggio", "Giugno", "Luglio", "Agosto", "Settembre", "Ottobre", "Novembre", "Dicembre"
+    ]
+  };
+
+
+  $("#s0").mbSlider({
+    showVal: true,
+    formatValue: function (val) {
+      var formatVal = new Date(val).format("dd/m/yy");
+      return formatVal;
+    },
+    onSlideLoad: function (obj) {
+      var val = $(obj).mbgetVal();
+      $("#returnedValue").html( "milliseconds: " + val);
+      $("#formattedValue").html( "date: " + new Date(val).format("dddd dd mmmm, yyyy"));
+    },
+    onStart    : function (obj) {},
+    onSlide    : function (obj) {
+      var val = $(obj).mbgetVal();
+      $("#returnedValue").html( "milliseconds: " + val);
+      $("#formattedValue").html( "date: " + new Date(val).format("dddd dd mmmm, yyyy"));
+    },
+    onStop     : function (obj) {
+      var val = $(obj).mbgetVal();
+      $("#returnedValue").html( "milliseconds: " + val);
+      $("#formattedValue").html( "date: " + new Date(val).format("dddd dd mmmm, yyyy"));
     }
-
-    dateFormat.i18n = {
-        dayNames: [
-            "Do", "Lu", "Ma", "Me", "Gio", "ve", "Sa",
-            "Domenica", "Lunedì", "martedì", "Mercoledì", "Giovedì", "Venerdì", "Sabato"
-        ],
-        monthNames: [
-            "Gen", "Feb", "Mar", "Apr", "Mag", "Giu", "Lug", "Ago", "Set", "Ott", "Nov", "Dic",
-            "Gennaio", "Febbraio", "Marzo", "Aprile", "Maggio", "Giugno", "Luglio", "Agosto", "Settembre", "Ottobre", "Novembre", "Dicembre"
-        ]
-    };
-
-
-    $("#s0").mbSlider({
-        showVal: true,
-        formatValue: function (val) {
-            var formatVal = new Date(val).format("dd/m/yy");
-            return formatVal;
-        },
-        onSlideLoad: function (obj) {
-            var val = $(obj).mbgetVal();
-            $("#returnedValue").html( "milliseconds: " + val);
-            $("#formattedValue").html( "date: " + new Date(val).format("dddd dd mmmm, yyyy"));
-        },
-        onStart    : function (obj) {},
-        onSlide    : function (obj) {
-            var val = $(obj).mbgetVal();
-            $("#returnedValue").html( "milliseconds: " + val);
-            $("#formattedValue").html( "date: " + new Date(val).format("dddd dd mmmm, yyyy"));
-        },
-        onStop     : function (obj) {
-            var val = $(obj).mbgetVal();
-            $("#returnedValue").html( "milliseconds: " + val);
-            $("#formattedValue").html( "date: " + new Date(val).format("dddd dd mmmm, yyyy"));
-        }
-    });
+  });
 
 </script>
 </body>
