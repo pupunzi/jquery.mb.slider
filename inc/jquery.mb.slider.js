@@ -6,7 +6,7 @@
  * Build:  {{ buildnum }}
  *
  * Open Lab s.r.l., Florence - Italy
- * email: matteo@open-lab.com
+ * email: matbicoc@gmail.com
  * site:  http://pupunzi.com
  *  http://open-lab.com
  * blog:  http://pupunzi.open-lab.com
