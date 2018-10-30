@@ -114,7 +114,8 @@
 					e.preventDefault();
 					e.stopPropagation();
 
-					var mousePos = e.clientX - slider.sliderBar.offset().left;
+          var clientX = e.clientX || e.touches[0].clientX;
+          var mousePos = window.scrollX + clientX - slider.sliderBar.offset().left;
 					var grid = (slider.options.grid * slider.sliderBar.outerWidth()) / slider.rangeVal;
 					var posInGrid = grid * Math.round(mousePos / grid);
 					var evalPos = ((slider.options.maxVal - slider.options.minVal) * posInGrid) / (slider.sliderBar.outerWidth() - (slider.sliderHandler.outerWidth() / 2)) + parseFloat(slider.options.minVal);
@@ -137,20 +138,26 @@
 				 */
 				var sliderElements = slider.sliderBar.add(slider.sliderHandler);
 
-				sliderElements.on("mousedown.mb_slider", function (e) {
+				sliderElements.on("mousedown.mb_slider, touchstart.mb_slider", function (e) {
+
+					e = e.originalEvent;
 
 					if (!$(e.target).is(slider.sliderHandler))
 						setNewPosition(e);
 
-					if (typeof slider.options.onStart == "function")
+          e.preventDefault();
+          e.stopPropagation();
+
+          if (typeof slider.options.onStart == "function")
 						slider.options.onStart(slider);
 
-					$(document).on("mousemove.mb_slider", function (e) {
-						setNewPosition(e);
+					$(document).on("mousemove.mb_slider, touchmove.mb_slider", function (e) {
+            e = e.originalEvent;
+            setNewPosition(e);
 					});
 
-					$(document).on("mouseup.mb_slider", function () {
-						$(document).off("mousemove.mb_slider").off("mouseup.mb_slider");
+					$(document).on("mouseup.mb_slider, touchend.mb_slider", function () {
+						$(document).off("mousemove.mb_slider, touchmove.mb_slider").off("mouseup.mb_slider, touchend.mb_slider");
 						if (typeof slider.options.onStop == "function")
 							slider.options.onStop(slider);
 					});
