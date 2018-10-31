@@ -1,22 +1,23 @@
-/*******************************************************************************
- * jquery.mb.components
- * file: jquery.mb.slider.js
- * last modified: 18/11/17 18.21
- * Version:  {{ version }}
- * Build:  {{ buildnum }}
- *
- * Open Lab s.r.l., Florence - Italy
- * email: matbicoc@gmail.com
- * site:  http://pupunzi.com
- *  http://open-lab.com
- * blog:  http://pupunzi.open-lab.com
- *
- * Licences: MIT, GPL
- * http://www.opensource.org/licenses/mit-license.php
- * http://www.gnu.org/licenses/gpl.html
- *
- * Copyright (c) 2001-2017. Matteo Bicocchi (Pupunzi)
- ******************************************************************************/
+/*::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+ jquery.mb.components
+ 
+ file: jquery.mb.slider.js
+ last modified: 10/31/18 7:15 PM
+ Version:  {{ version }}
+ Build:  {{ buildnum }}
+ 
+ Open Lab s.r.l., Florence - Italy
+ email:  matteo@open-lab.com
+ blog: 	http://pupunzi.open-lab.com
+ site: 	http://pupunzi.com
+ 	http://open-lab.com
+ 
+ Licences: MIT, GPL
+ http://www.opensource.org/licenses/mit-license.php
+ http://www.gnu.org/licenses/gpl.html
+ 
+ Copyright (c) 2001-2018. Matteo Bicocchi (Pupunzi)
+ :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::*/
 
 (function ($) {
 
