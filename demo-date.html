@@ -76,9 +76,12 @@
   <br>
   <br>
   <script>
+
     var maxVal = new Date().getTime();
+    var minVal = maxVal - (1000*60*60*24*30);
+
   </script>
-  <div id="s0" data-property="{rangeColor:'rgba(113, 208, 240, 0.64)', minVal: 1413064800000, maxVal: maxVal, grid:0, startAt: new Date().getTime()}" style="display:inline-block;*display:inherit;"></div>
+  <div id="s0" data-property="{rangeColor:'rgba(113, 208, 240, 0.64)', minVal: minVal, maxVal: maxVal, grid:0, startAt: new Date().getTime()}" style="display:inline-block;*display:inherit;"></div>
 </div>
 
 <div id="returnedValue"> value</div>
