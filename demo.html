@@ -95,11 +95,20 @@
     <h1>mb.slider.demo</h1>
     <br><br>
     <div id="debug"></div>
+
+    <div id="ex10" style="">simple:
+        <div id="s11" class="mb_slider" data-property="{minVal:0, maxVal:24, grid:1, startAt:5}" style="display:block;"></div>
+    </div>
     <script>
-        var maxVal = new Date().getTime();
-        var minVal = maxVal - (1000*60*60*24*30);
+        $("#s11").mbSlider();
     </script>
+    <br>
+
     <div id="ex3" style="">Date:
+        <script>
+            var maxVal = new Date().getTime();
+            var minVal = maxVal - (1000*60*60*24*30);
+        </script>
         <div id="s0" class="mb_slider" data-property="{minVal:minVal, maxVal:maxVal, grid:0, startAt:new Date().getTime()}" style="display:block;"></div>
     </div>
     <br>
