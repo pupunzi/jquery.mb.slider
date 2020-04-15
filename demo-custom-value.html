@@ -1,0 +1,103 @@
+<!doctype html>
+
+<!--–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––
+  jquery.mb.components                                                                                                                              –
+                                                                                                                                                    –
+  file: demo-custom-value.html                                                                                                                      –
+  last modified: 12/15/19 4:37 PM                                                                                                                   –
+                                                                                                                                                    –
+  Open Lab s.r.l., Florence - Italy                                                                                                                 –
+                                                                                                                                                    –
+  email: matteo@open-lab.com                                                                                                                        –
+  site: http://pupunzi.com                                                                                                                          –
+        http://open-lab.com                                                                                                                         –
+  blog: http://pupunzi.open-lab.com                                                                                                                 –
+  Q&A:  http://jquery.pupunzi.com                                                                                                                   –
+                                                                                                                                                    –
+  Licences: MIT, GPL                                                                                                                                –
+     http://www.opensource.org/licenses/mit-license.php                                                                                             –
+     http://www.gnu.org/licenses/gpl.html                                                                                                           –
+                                                                                                                                                    –
+  Copyright (c) 2001-2020. Matteo Bicocchi (Pupunzi);                                                                                               –
+  –––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––-->
+
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <title>mb.slider - Date range</title>
+
+  <style type="text/css">
+
+    body{
+      font:14px/14px Arial, sans-serif;
+      color:gray;
+      background-color: rgb(255, 249, 248);
+    }
+
+    .wrapper{
+      font-family:Arial, Helvetica, sans-serif;
+      padding-top:90px;
+      padding-left:50px;
+    }
+
+    .wrapper h1{
+      font-family:Arial, Helvetica, sans-serif;
+      font-size:26px;
+    }
+
+    #returnedValue, #formattedValue{
+      position: relative;
+      width: 320px;
+      font-size: 20px;
+      padding: 20px;
+      background: rgba(25, 34, 37, 0.2);
+      color: #333;
+      margin: auto auto 10px;
+      border-radius: 10px;
+    }
+
+    #formattedValue{
+      background: rgba(255, 152, 0, 0.2);
+    }
+
+  </style>
+
+  <link href="css/mb.slider.css" media="all" rel="stylesheet" type="text/css">
+  <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.js"></script>
+  <script type="text/javascript" src="inc/jquery.mb.slider.js"></script>
+
+</head>
+<body>
+
+<div class="wrapper">
+  <h1>mb.slider.demo - Custom value sequence</h1>
+  <br>
+  <h3>let customValue = [1, 2, 4, 5, 100]</h3>
+  <br>
+  <br>
+  <br>
+  <br>
+  <script>
+	  let customValue = [1 , 2, 4, 5, 100]
+	  var minVal = 0;
+    var maxVal = customValue.length-1;
+  </script>
+  <span id="s0" data-property="{minVal: minVal, maxVal: maxVal, grid:0}"></span> <span id="chosenVal" style="font-weight: 600; font-size: 180%"></span>
+</div>
+<script type="text/javascript">
+
+  $("#s0").mbSlider({
+    showVal: false,
+    formatValue: function (val) {
+	    let formatVal = customValue[val]
+      return formatVal;
+    },
+	  onSlide    : function (obj) {
+		  let val = $(obj).mbgetVal();
+		  $('#chosenVal').html(customValue[val]);
+	  },
+
+  });
+</script>
+</body>
+</html>
