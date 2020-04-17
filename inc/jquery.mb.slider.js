@@ -52,7 +52,7 @@
 				$.extend(slider.options, $.mbSlider.defaults, options, this.metadata);
 				slider.options.element = slider;
 
-				if (slider.options.grid == 0)
+				if (slider.options.grid === 0)
 					slider.options.grid = 1;
 
 				if (this.options.startAt < 0 && this.options.startAt < slider.options.minVal)
@@ -66,7 +66,7 @@
 				slider.sliderStart = $("<div class='mb_sliderStart'/>");
 				slider.sliderEnd = $("<div class='mb_sliderEnd'/>");
 				slider.sliderValue = $("<div class='mb_sliderValue'/>").css({color: this.options.rangeColor});
-				slider.sliderZeroLabel = $("<div class='mb_sliderZeroLabel'>0</div>").css({position: "absolute", top: (slider.options.labelPos == "top" ? -18 : 29)});
+				slider.sliderZeroLabel = $("<div class='mb_sliderZeroLabel'>0</div>").css({position: "absolute", top: (slider.options.labelPos === "top" ? -18 : 29)});
 				slider.sliderValueLabel = $("<div class='mb_sliderValueLabel'/>").css({position: "absolute", borderTop: "2px solid " + slider.options.rangeColor});
 
 				slider.sliderBar = $("<div class='mb_sliderBar'/>").css({position: "relative", display: "block"});
@@ -123,7 +123,7 @@
 
 					slider.evalPosGrid = Math.max(slider.options.minVal, Math.min(slider.options.maxVal, slider.options.grid * Math.round(evalPos / slider.options.grid)));
 
-					if (typeof slider.options.onSlide == "function" && slider.gridStep != posInGrid) {
+					if (typeof slider.options.onSlide == "function" && slider.gridStep !== posInGrid) {
 						slider.gridStep = posInGrid;
 						slider.options.onSlide(slider);
 					}
@@ -174,7 +174,7 @@
 			var slider = $(this).get(0);
 			if (val > slider.options.maxVal) val = slider.options.maxVal;
 			if (val < slider.options.minVal) val = slider.options.minVal;
-			var startPos = val == slider.options.minVal ? 0 : Math.round(((val - slider.options.minVal) * slider.sliderBar.outerWidth()) / slider.rangeVal);
+			var startPos = val === slider.options.minVal ? 0 : Math.round(((val - slider.options.minVal) * slider.sliderBar.outerWidth()) / slider.rangeVal);
 			startPos = startPos >= 0 ? startPos : slider.zero + val;
 			var grid = (slider.options.grid * slider.sliderBar.outerWidth()) / slider.rangeVal;
 			var posInGrid = grid * Math.round(startPos / grid);
